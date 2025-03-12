@@ -1,0 +1,10 @@
+[
+  {
+    "role": "system",
+    "content": "Answer in json format only: {\"distance\": < e.g. \"1945.399479\" >}. The value must be in kilometers and no explanation, just the answer!"
+  },
+  {
+    "role": "user",
+    "content": "What is the distance between {location_1} and {location_2}?"
+  }
+]
