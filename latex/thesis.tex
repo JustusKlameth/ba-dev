@@ -1,0 +1,68 @@
+% !TeX root = thesis.tex
+\input{config.tex}
+
+%Informationen zur Arbeit
+\newcommand{\printname}{Justus Klameth}
+\newcommand{\printnumber}{527 267}
+
+\newcommand{\printtitle}{Evaluierung der geographischen Fähigkeiten ausgewählter Llama 3 Modelle: \\ Eine Untersuchung zur Genauigkeit der Koordinaten- und Distanzermittlung von Städten}
+\newcommand{\printalttitle}{Evaluierung der geographischen Fähigkeiten ausgewählter Llama 3 Modelle: \\ Eine Untersuchung zur Genauigkeit der Koordinaten- und Distanzermittlung von Städten}
+\newcommand{\printcity}{Münster}
+\newcommand{\printtype}{Bachelorarbeit}
+\newcommand{\printdegree}{Bachelor of Science}
+\newcommand{\printsupervisor}{Prof. Dr. Malte Schilling}
+\newcommand{\printfirstassessor}{Prof. Dr. Malte Schilling}
+\newcommand{\printsecondassessor}{Prof. Dr. Xiaoyi Jiang}
+\newcommand{\printinstitute}{Computer Science Department}
+
+\begin{document}
+\pagenumbering{roman}
+
+% Titelblatt
+\begin{titlepage}
+\include{chapter/titlepage}
+\end{titlepage}
+
+\input{chapter/abstract.tex}
+\cleardoubleoddemptypage
+
+% Inhaltsverzeichnis
+\tableofcontents
+
+\cleardoublepage
+\pagenumbering{arabic}
+
+% Die Hauptkapitel der Arbeit
+\include{chapter/Introduction}
+
+\include{chapter/Background}
+
+\include{chapter/Methods}
+
+\include{chapter/Results}
+
+\include{chapter/Discussion}
+
+% mit Diskussion zusammengefasst
+% \include{chapter/Conclusion}
+
+% Literaturverzeichnis
+%\bibliographystyle{unsrtdin}
+%\bibliographystyle{apalike} 
+%\bibliographystyle{unsrtnat} 
+%\bibliographystyle{abbrvnat}
+\bibliographystyle{apa-good}
+\bibliography{References}
+%\bibliography{Bachelor Arbeit}
+
+
+%% APA style
+%\bibliographystyle{model5-names}\biboptions{authoryear}
+%\bibliography{Quellen}
+
+\include{chapter/hilfsmittel}
+
+% Eidesstattliche Erklärung
+\include{chapter/declaration}
+
+\end{document}

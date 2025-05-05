@@ -1,0 +1,233 @@
+%---------------------------------------------------------------------------
+% Vorlage für Bachelorarbeiten, Masterarbeiten
+% der AG Autonome Intelligente Systeme
+% Basierend auf der Vorlage der AG PRIA an der Universität Münster
+% (Autoren dort: Daniel Tenbrinck, Fabian Gigengack, Michael Schmeing, Lucas Franek, Andreas Nienkötter
+% Dazu Dank an Phil Steinhorst und dessen Vorlage, von der Teile übernommen wurden
+%---------------------------------------------------------------------------
+
+\documentclass[%
+  paper=A4,               % Papiergröße
+  twoside=true,           % zweiseitiges Layout
+  openright,              % Kapitel auf ungerader Seite beginnen
+  11pt,                   % Schriftgröße
+  bibliography=totoc,     % Literaturverzeichnis im Inhaltsverzeichnis
+  %listof=totoc,           % Abb.-/Tab.-verzeichnis im Inhaltsverzeichnis
+  titlepage=on,           % Titel auf eigener Seite
+  DIV=12,                 % Satzspiegelberechnung
+  BCOR=1.5cm,             % Bindungskorrektur
+  parskip=half,            % Absatzabstand
+  final
+]{scrreprt}
+
+% Basics
+\usepackage[x11names]{xcolor}
+
+\usepackage{natbib}
+
+% Schriftarten setzen
+\usepackage[T1]{fontenc}
+%\usepackage[utf8]{inputenc} % UTF-8 Codierung
+\usepackage{microtype}
+\usepackage{charter}
+\usepackage{sourcesanspro}
+\usepackage{nimbusmononarrow}
+%\renewcommand*\familydefault{\sfdefault}   % aktivieren für serifenlose Schrift
+
+\usepackage{array}
+\usepackage{booktabs}\newcommand{\ra}[1]{\renewcommand{\arraystretch}{#1}}
+\usepackage{adjustbox}
+
+% Absatzformatierung
+\usepackage{setspace}
+\onehalfspacing
+\setlength{\parindent}{0cm}
+
+% Sprachoptionen
+\usepackage[ngerman]{babel}
+%\usepackage[english]{babel}
+\usepackage[german=quotes]{csquotes}    % passende Anführungszeichen
+
+% Kopf- und Fußzeile
+\usepackage[headsepline=1pt, automark]{scrlayer-scrpage}
+\setkomafont{pageheadfoot}{\sffamily}       % Kopfzeile serifenlos
+\setkomafont{pagenumber}{\sffamily\Large}   % Seitenzahl serifenlos und etwas größer
+\setkomafont{headsepline}{\color{gray}} % adds a gray line under the header
+\renewcommand*{\footfont}{\sffamily\color{gray}}
+
+% adds a thick gray line after the chapter number
+\renewcommand*{\chapterformat}{%
+    \thechapter\enskip
+    \textcolor{gray!50}{\rule[-\dp\strutbox]{1.5pt}{\baselineskip}}\enskip
+}
+
+% Alles rund um Floats
+\usepackage{graphicx}
+% \usepackage{subfigure} % Um mehrere Bilder in eine figure einzufügen
+\usepackage{subcaption} % subfigure ist anscheinend etwas älter
+
+% Mathe-Pakete
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{thmtools}
+
+% Definition der Styles für mathematische Definitionen, Sätze, Beweise, etc.
+\declaretheoremstyle[                     % Style für Definitionen, Sätze, Behauptungen, etc.
+  headfont=\sffamily\bfseries,            % Font für Überschrift
+  notefont=\normalfont\sffamily\itshape,  % Font für Bezeichnung in Klammern
+  bodyfont=\normalfont,                   % Font für Inhalt
+  headformat=\NAME\ \NUMBER\; \NOTE,      % Reihenfolge: Erst Definition/Satz/etc., dann Nummer, dann Bezeichnung
+  headpunct={},                           % kein Punkt am Ende der Überschrift
+  postheadspace=\newline,                 % Zeilenumbruch nach Überschrift
+  mdframed={                              % Gestaltungsoptionen
+    skipabove=1em
+    skipbelow=1em,
+    innerleftmargin=1em,
+    innerrightmargin=1em,
+    hidealllines=true,
+    backgroundcolor=gray!15
+  },
+  ]{mainstyle}
+
+\declaretheoremstyle[             % Style für Beweise
+  headfont=\bfseries\scshape,
+  bodyfont=\normalfont,
+  headpunct=:,
+  postheadspace=2em,
+  qed=\qedsymbol
+  ]{proofstyle}
+
+% Definition der entsprechenden Umgebungen
+\declaretheorem[                  % Umgebung für Definitionen
+  name=Definition,                % auszugebender Name
+  parent=chapter,                 % Nummerierung mit vorgestellter Kapitelnummer
+  style=mainstyle                 % Nutze mainstyle-Definition (siehe oben)
+  ]{definition}                   % Name der Umgebung
+
+\declaretheorem[                  % Umgebung für Sätze
+  name=Satz,
+  sharenumber=definition,         % gemeinsame Nummerierung mit definition
+  style=mainstyle
+  ]{satz}
+
+\declaretheorem[                  % Umgebung für Beweise
+  name=Beweis,
+  numbered=no,                    % Beweise sind nicht nummeriert
+  style=proofstyle
+  ]{beweis}
+  
+  % -- Definition der einzelnen Umgebungen
+\declaretheoremstyle[%
+     headfont=\sffamily\bfseries,
+     notefont=\normalfont\sffamily,
+     bodyfont=\normalfont,
+     headformat=\NAME\ \NUMBER\NOTE,
+     headpunct=,
+     postheadspace=\newline,
+     spaceabove=\parsep,spacebelow=\parsep,
+     %shaded={bgcolor=gray!20},
+     postheadhook=\theorembookmark,
+     mdframed={
+         backgroundcolor=gray!20,
+             linecolor=gray!20,
+             innertopmargin=6pt,
+             roundcorner=5pt,
+             innerbottommargin=6pt,
+             skipbelow=\parsep,
+             skipbelow=\parsep }
+     ]%
+{mainstyle}
+
+\declaretheoremstyle[%
+     headfont=\sffamily\bfseries,
+     notefont=\normalfont\sffamily,
+     bodyfont=\normalfont,
+     headformat=\NAME\ \NUMBER\NOTE,
+     headpunct=,
+     postheadspace=\newline,
+     spaceabove=15pt,spacebelow=10pt,
+     postheadhook=\theorembookmark]%
+{mainstyle_unshaded}
+
+\declaretheoremstyle[%
+     headfont=\sffamily\bfseries,
+     notefont=\normalfont\sffamily,
+     bodyfont=\normalfont,
+     headformat=\NUMBER\NAME\NOTE,
+     headpunct=,
+     postheadspace=\newline,
+     spaceabove=15pt,spacebelow=10pt,
+     % shaded={bgcolor=gray!20},
+     postheadhook=\theorembookmark]%
+{mainstyle_unnumbered}
+
+\declaretheorem[name=Definition,parent=section,style=mainstyle]{definition_alt}
+\declaretheorem[name=Definition,numbered=no,style=mainstyle]{definition*}
+\declaretheorem[name=Definition,sharenumber=definition,style=mainstyle_unshaded]{definitionUnshaded}
+
+\declaretheorem[name=Theorem,sharenumber=definition,style=mainstyle]{theorem}
+\declaretheorem[name=Theorem,numbered=no,style=mainstyle_unnumbered]{theorem*}
+
+\declaretheorem[name=Proposition,sharenumber=definition,style=mainstyle]{proposition}
+\declaretheorem[name=Lemma,sharenumber=definition,style=mainstyle]{lemma}
+
+\declaretheorem[name=Satz,sharenumber=definition,style=mainstyle]{satz_alt}
+\declaretheorem[name=Satz,sharenumber=definition,style=mainstyle_unshaded]{satzUnshaded}
+\declaretheorem[name=Satz,numbered=no,style=mainstyle_unnumbered]{satz*}
+
+\declaretheorem[name=Korollar,sharenumber=definition,style=mainstyle]{korollar}
+
+\declaretheorem[name=Notation,numbered=no,style=mainstyle_unnumbered]{notation}
+\declaretheorem[name=Bemerkung,numbered=no,style=mainstyle_unnumbered]{bemerkung}
+\declaretheorem[name=Beispiel,numbered=no,style=mainstyle_unnumbered]{beispiel}
+\declaretheorem[name=Beispiele,numbered=no,style=mainstyle_unnumbered]{beispiele} 
+
+% Querverweise
+\usepackage{hyperref}
+\usepackage{cleveref}
+
+% Quellcode-Listings
+\usepackage{listingsutf8}
+\usepackage{listing}
+\lstset{%
+  showspaces=false,
+  showstringspaces=true,
+  showtabs=false,
+  tabsize=2,
+  basicstyle=\footnotesize\ttfamily,
+  frame=leftline,
+  framerule=3pt,
+  framexleftmargin=4pt,
+  rulecolor=\color{gray},
+  numbers=left,
+  numberstyle=\color{gray},
+  numbersep=15pt,
+  commentstyle=\color{Honeydew4},
+  keywordstyle=\color{DarkOrchid3},
+  stringstyle=\color{Chartreuse4},
+  nolol
+}
+
+\usepackage{xcolor} % Für Farben
+\usepackage{algorithmic} % Für Pseudo-Code
+\usepackage{algorithm} % Wrapper für Pseudo-Code
+\usepackage[font={small}, labelfont=bf]{caption} % kleine Bildunterschriften
+%\usepackage{geometry} % Für Feinanpassungen des Layouts
+
+% Zusätzliches
+\usepackage{lipsum}       % Für Platzhalter-Text
+\usepackage{todonotes}    % Erinnerungen an noch abzuarbeitende Baustellen
+
+%\usepackage{listings} % Für Code-Listings
+%\renewcommand{\lstlistingname}{Quelltext} %Ändert die Überschrift von Listing nach Quelltext
+
+% Einstellungen für Abstand an den Rändern
+%\geometry{a4paper,left=35mm,right=35mm,top=20mm,bottom=20mm, includeheadfoot}
+
+\usepackage{siunitx}         % Für konsistente Zahlenformatierung
+
+\sisetup{
+  % output-decimal-marker = {,}, % Dezimaltrennzeichen auf Komma setzen
+  locale = DE                  % Alternative: deutsche Lokalisierung
+}

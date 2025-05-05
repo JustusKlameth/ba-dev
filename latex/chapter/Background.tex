@@ -1,0 +1,113 @@
+\chapter{Grundlagen}
+\label{ch:basics}
+
+\newcommand{\mean}{\bar{x}_{arithm}}
+
+% \section{Fähigkeiten von Llama}
+
+% \begin{itemize}
+%     \item ChatDoctor: A Medical Chat Model Fine-Tuned on a Large Language Model Meta-AI (LLaMA) Using Medical Domain Knowledge \citep{liChatDoctorMedicalChat2023}
+%     \item Code Llama: Open Foundation Models for Code \citep{roziereCodeLlamaOpen2024}
+%     \item The Llama 3 Herd of Models | Research - AI at Meta \citep{ai@metaLlama3Herd2024}
+% \end{itemize}
+
+% \section{Geografische Fähigkeiten von Large Language Models}
+
+% \begin{itemize}
+%     \item Are Large Language Models Geospatially Knowledgeable? \citep{bhandariAreLargeLanguage2023}
+%     \item Evaluating Spatial Understanding of Large Language Models \citep{yamadaEvaluatingSpatialUnderstanding2024}
+%     \item GeoLLM: Extracting Geospatial Knowledge from Large Language Models \citep{manviGeoLLMExtractingGeospatial2024}
+%     \item GPT4GEO: How a Language Model Sees the World's Geography \citep{robertsGPT4GEOHowLanguage2023}
+% \end{itemize}
+
+In diesem Kapitel werden einige grundlegende Konzepte vorgestellt, auf denen diese Arbeit aufbaut.
+Zunächst werden die wesentlichen Grundlagen zu LLMs erläutert, gefolgt von einem Überblick über das geographische Basiswissen.
+Abschließend werden die in dieser Arbeit genutzten Evaluationsmetriken sowie einige technische Grundlagen präsentiert.
+
+\section*{Grundlagen zu Large Language Models (LLMs)}
+% Architektur (z. B. Transformer, Attention-Mechanismen)
+Mit \textit{Large Language Models (LLMs)} sind meistens \textit{Language Models} basierend auf Transformern gemeint, die Hunderte Milliarden (oder mehr) Parameter enthalten und mithilfe von sehr vielen Textdaten trainiert werden.
+LLMs verfügen über ausgeprägte Fähigkeiten, natürliche Sprache zu verstehen und komplexe Aufgaben (durch Textgenerierung) zu lösen \citep{zhaoSurveyLargeLanguage2024}.
+Weitere Informationen über die Entwicklung, Fähigkeiten und wichtige Techniken in Bezug auf LLMs liefert die Arbeit \textit{A Survey of Large Language Models} von \citet{zhaoSurveyLargeLanguage2024}.
+
+% Typically, large language models (LLMs) refer to Transformer language models that contain hundreds of billions (or more) of parameters4, which are trained on massive text data [32], such as GPT-3 [55], PaLM [56], Galactica [35], and LLaMA [57]. LLMs exhibit strong capacities to un- derstand natural language and solve complex tasks (via text generation).
+
+% LLaMA (Versionen, Parametergrößen)
+Meta hat mittlerweile drei Versionen an LLMs veröffentlicht: LLaMA \citep{touvronLLaMAOpenEfficient2023}, Llama 2 \citep{touvronLlama2Open2023} und Llama 3 \citep{ai@metaLlama3Herd2024}. Details zu den einzelnen Versionen und Modellen können den zugehörigen Quellen entnommen werden.
+
+Von den Llama 3 Modellen gibt es verschiedene Ausführungen: Llama 3, Llama 3.1, Llama 3.2 und Llama 3.3\footnote{Details: \url{https://github.com/meta-llama/llama-models/blob/main/models/}}.
+Von diesen Modellarten bieten die Llama 3.1 Modelle mit den Parametergrößen 8~Mrd., 70~Mrd. und 405~Mrd. das größte Spektrum.
+Das Llama 3.3 Modell gibt es nur mit 70~Mrd. Parametern und die Llama 3.2 Modelle mit 1~Mrd. und 3~Mrd. Parametern.
+Außerdem existieren Llama 3.3 Modelle, die auch Bilder als Eingabe verwenden können.
+
+% Anfragen an LLMs (inference, system prompt, Nutzereingabe)
+Anfragen an LLMs erfolgen meist in Form von strukturierten Texteingaben.
+Für die Llama 3 Modelle gibt es beispielsweise vier vordefinierte Rollen für die Textabschnitte: \textbf{system} setzt den Kontext (z.\,B. Regeln und allgemeine Informationen), \textbf{user} ist die Eingabe des Nutzers, \textbf{ipython} wird bei der Nutzung externer Werkzeuge eingesetzt und \textbf{assistant} enthält die Antwort des Modells.
+Weitere Informationen zur Nutzung der Llama Modelle sind unter \url{https://www.llama.com/docs/} verfügbar.
+
+Zudem existieren auch alternative APIs, wie unter anderem die OpenAI API\footnote{\url{https://platform.openai.com/docs/overview}}, die beispielsweise von DeepInfra\footnote{\url{https://deepinfra.com/}} genutzt wird.
+DeepInfra ermöglicht durch diese Standardisierung eine einfache Interaktion mit einer Vielzahl verschiedener LLMs.
+
+
+
+\section*{Geographisches Basiswissen}
+Da diese Arbeit sich mit den geographischen Fähigkeiten von LLMs beschäftigt, ist ein grundlegendes Verständnis von einigen geographischen Konzepten wichtig.
+Im Folgenden werden die geographischen Koordinaten, Ländercodes und Berechnungsverfahren für geographische Distanzen vorgestellt.
+
+% geographische Koordinaten
+Die geographischen Koordinaten, die in dieser Arbeit genutzt werden, sind Kugelkoordinaten, die eine Position auf der Erdoberfläche beschreiben.
+Die Koordinaten bestehen aus Längen- und Breitengrad.
+Weitere Informationen zu geographischen Koordinaten, wie z.\,B. zu verschiedenen Darstellungsmöglichkeiten und was genau Längen- und Breitengrad bedeuten, sind unter \url{https://de.wikipedia.org/wiki/Geographische_Koordinaten} zu finden.
+
+% Berechnungsverfahren für geographische Distanzen
+Um die Distanz zwischen zwei geographischen Koordinaten zu berechnen, gibt es unter Anderem die Möglichkeit, die kürzeste Distanz dieser Punkte auf einer Kugeloberfläche zu bestimmen (auch Orthodrom genannt\footnote{\url{https://de.wikipedia.org/wiki/Orthodrome}}).
+Da die Erde keine perfekte Kugel ist, werden genauere Ergebnisse erzielt, wenn man statt einer Kugel das WGS84-Ellipsoid zugrunde legt.
+Zur Berechnung kann dabei der Algorithmus von \citet{karneyAlgorithmsGeodesics2013} verwendet werden.
+
+% Ländercodes
+Manchmal wird anstatt eines Ländernamens der zugehörige Ländercode nach der ISO-3166-1-Kodierliste (Ländercodeliste)\footnote{\url{https://de.wikipedia.org/wiki/ISO-3166-1-Kodierliste}} verwendet.
+Die Standardisierung hat den Vorteil, dass Probleme mit verschiedenen Bezeichnungen für ein Land in verschiedenen Sprachen sowie allgemeine Eindeutigkeitsprobleme behoben werden.
+
+
+
+\section*{Evaluationsmetriken}
+Um die Genauigkeit und Streuung der Antworten zu beschreiben, werden in dieser Arbeit zwei grundlegende statistische Maße verwendet: das \textbf{arithmetische Mittel} (Durchschnitt) und die \textbf{Standardabweichung}.
+
+Das arithmetische Mittel\footnote{\url{https://de.wikipedia.org/wiki/Mittelwert}} (auch Mittelwert oder Durchschnitt genannt) ist die Summe der gegebenen Werte geteilt durch die Anzahl der Werte und gibt damit an, wie hoch der typische Wert eines Datensatzes ist.
+\[ \mean = \frac{1}{n} \sum_{i = 1}^{n} x_i = \frac{x_1 + x_2 + \cdots + x_n}{n} \]
+In den nachfolgenden Experimenten wird in der Regel das arithmetische Mittel von Daten ermittelt, die an manchen Stellen keine Zahlen enthalten, da zuvor Fehler aufgetreten sind.
+Diese Werte werden bei der Berechnung ignoriert\footnote{Mithilfe von: \url{https://numpy.org/doc/2.0/reference/generated/numpy.nanmean.html}}.
+
+Die Standardabweichung\footnote{\url{https://de.wikipedia.org/wiki/Varianz_(Stochastik)}} ist die Quadratwurzel der Varianz und eins der wichtigsten Streuungsmaße der Stochastik.
+Sie beschreibt, wie stark die einzelnen Datenpunkte um das arithmetische Mittel streuen.
+\[ \sigma = \sqrt{ \frac{1}{n} \sum_{i = 1}^{n} \left( x_i - \mean \right)^2 } \]
+Auch bei der Berechnung der Standardabweichung werden häufig Daten mit Lücken betrachtet, die dabei ignoriert werden\footnote{Mithilfe von: \url{https://numpy.org/doc/2.1/reference/generated/numpy.nanstd.html}}.
+
+
+
+\section*{Technische Grundlagen}
+In dieser Arbeit werden das JSON-Format sowie reguläre Ausdrücke zur Datenextraktion aus Texten verwendet.
+
+Das JSON-Format wird hauptsächlich zur Speicherung und Übertragung strukturierter Daten eingesetzt.
+Ein einfaches Beispiel aus dem Kapitel \ref{ch:results} ist in der Abbildung \ref{dist_answer_background} dargestellt.
+Dabei ist \textit{""distance""} der Schlüssel, mit dem der Wert \textit{6171.479892} abgerufen werden kann.
+Auf diese Weise können leicht einzelne Werte aus strukturierten Daten extrahiert werden.
+Weitere Informationen zum JSON-Format findet man z.\,B. unter \url{https://de.wikipedia.org/wiki/JSON}.
+
+\begin{figure} % Antwort für distance
+
+    \begin{lstlisting}[literate={°}{\textdegree}1, breaklines=true]
+        {
+            ""distance"": 6171.479892
+        }
+    \end{lstlisting}
+
+    \caption{Die Antwort des Llama-3.1-8B-Instruct Modells für die Anfrage \ref{dist_message}.}
+
+    \label{dist_answer_background}
+\end{figure}
+
+Reguläre Ausdrücke (Abkürzung: Regex) sind eine Möglichkeit, ein festes Muster zu beschreiben, mit dem unter anderem in einem Text gesucht werden kann.
+Zum Beispiel stellt der reguläre Ausdruck \textbf{(ab)*} alle Wörter dar, die aus beliebig vielen Wiederholungen von \textbf{ab} bestehen.
+Mit deutlich komplexeren regulären Ausdrücken kann man verschiedene Koordinatenformate in unstrukturierten Texten suchen und die Koordinaten anschließend extrahieren.
+Weitere Informationen über die Semantik und den Nutzen von regulären Ausdrücken sind unter \url{https://de.wikipedia.org/wiki/Regul%C3%A4rer_Ausdruck} zu finden.

@@ -1,0 +1,140 @@
+\chapter{Diskussion und Fazit}
+\label{ch:discussion}
+
+% The Discussion chapter is critical for demonstrating your understanding of the research context and your ability to critically analyze your own findings. You should explain the meaning of your results, considering their limitations, and discussing how they align or contrast with previous studies. Further, you should relate your findings to your hypotheses and expectations which might include discussing reasons for why the results turned out differently or inconclusive. Consider the implications of your findings for the theoretical framework within which your research operates. How do they advance, challenge, or refine existing knowledge?
+
+% \section{Tips for an Effective Discussion}
+% \begin{itemize}
+%     \item \textbf{Be Balanced:} Present both strengths and limitations of your study to provide a balanced view.
+%     \item \textbf{Stay Focused:} Keep the discussion relevant to your research questions and objectives.
+%     \item \textbf{Use Evidence:} Support your arguments with references from the literature, ensuring that your conclusions are grounded in evidence and relate to your findings.
+%     \item \textbf{Clarify Significance:} Clearly articulate the significance of your findings in the context of the field.
+%     \item \textbf{Avoid Speculation:} Stick to what the data supports. Speculative comments should be clearly identified as such and founded on logical reasoning.
+% \end{itemize}
+
+
+
+% ---------------------------------------------------------------------------------
+% Einleitung: Bezug auf die Fragestellung & Ausblick aufs Kapitel
+% ---------------------------------------------------------------------------------
+Im Folgenden werden die in Kapitel \ref{ch:methods} beschriebene Methodik und die in Kapitel \ref{ch:results} präsentierten Ergebnisse kritisch reflektiert.
+Dabei werden sowohl die Einschränkungen, Stärken und Schwächen als auch mögliche Ansätze für weiterführende Arbeiten herausgearbeitet.
+
+Anschließend werden die Ergebnisse zusammengefasst und hinsichtlich möglicher praktischer Einsatzmöglichkeiten diskutiert.
+Zudem wird erörtert, ob damit die folgende Fragestellung beantwortet werden kann:
+
+\begin{center}
+    \itshape
+    In welchem Umfang sind ausgewählte Llama 3 Modelle in der Lage, akkurate Koordinaten für Städte anzugeben und Distanzen zwischen Städten zu bestimmen?
+\end{center}
+
+
+Abschließend werden die Bedeutung der Ergebnisse herausgearbeitet und ein Fazit gezogen.
+
+
+
+% ---------------------------------------------------------------------------------
+% Diskussion und Future Work: Einschränkungen, Stärken, Schwächen, Future Work
+% ---------------------------------------------------------------------------------
+\section{Diskussion und Perspektiven für zukünftige Forschung}
+Zuerst werden allgemeine Einschränkungen, Stärken, Schwächen und weiteres Forschungspotential dargestellt.
+Anschließend wird dies auch für die beiden Experimente \textit{Koordinaten} und \textit{Distanz} gemacht.
+
+% + 4 Modelle
+Ein zentraler Beitrag dieser Arbeit ist der Vergleich von vier verschiedenen Llama 3 Modellen, da dadurch sowohl die aktuellen Unterschiede dargestellt werden, als auch eine Grundlage für den Vergleich mit zukünftigen Modellen geschaffen wird.
+Weitere Arbeiten könnten die selben Experimente mit anderen LLMs oder neueren Llama Modellen durchführen, um Unterschiede bzw. Fortschritte festzustellen.
+
+% - Datensatz
+Allerdings liegt eine Einschränkung dieser Arbeit in der Auswahl der Daten, da nur Städte mit mindestens 100.000 Einwohnern betrachtet werden.
+Daher kann nur spekuliert werden, wie sich die Modelle und Verfahren für kleinere Städte verhalten.
+In zukünftigen Arbeiten könnte untersucht werden, wie sich LLMs bei kleineren Städten oder anderen geographischen Punkten verhalten.
+
+% + Länderinformation
+Außerdem konnte durch die experimentelle Evaluation bestätigt werden, dass die Auswahl der Daten, die in den Anfragen an die LLMs enthalten sind, essentiell für die Genauigkeit der Antworten ist.
+In dieser Arbeit wurde beispielhaft gezeigt, dass die Länderinformation einen sehr großen Einfluss auf die Antworten hat.
+Die Auswahl dieser Daten bietet weiteres Forschungspotential, beispielsweise den Einfluss von der Ergänzung der Bevölkerungszahl oder des Bundesstaates/-landes zum Städtenamen auf die Genauigkeit.
+
+\subsection*{Koordinaten}
+
+% + 3 Verfahren
+Eine Stärke dieser Arbeit liegt in der Analyse von einem bereits bekannten und zwei neuen Auswertungsverfahren in Kombination mit den vier verschiedenen Llama Modellen.
+Durch diese breite Betrachtung wird eine differenzierte Bewertung der Fähigkeiten der Modelle und der Einflüsse der Auswertungsverfahren ermöglicht.
+In Zukunft könnten noch weitere Auswertungsverfahren betrachtet werden, z.\,B. ein aktualisiertes \regexv{}.
+
+% - regex konnte nicht überprüft werden
+Das \regexv{} von \citet{bhandariAreLargeLanguage2023} wurde unverändert übernommen, um einen direkten Vergleich der LLMs zu ermöglichen.
+Die Ergebnisse der Arbeit werden in der Abbildung \ref{comparison_original} mit den Ergebnissen des \regexv{}s ohne die Länderinformation dieses Experimentes verglichen.
+Dabei fällt auf, dass bei beiden Arbeiten größere Modelle kleinere Fehler aufweisen.
+Allerdings sind die bereits geringen \textit{P-Rate}-Werte vor allem bei dem neusten Modell (Llama 3.3) deutlich gesunken.
+
+\begin{table}[tb] % Vergleich meiner Ergebnisse mit dem ursprünglichen Paper
+    \centering
+
+    \begin{tabular}{lccc}
+        \toprule
+        Model & Error (km) & P-Rate (\%) \\
+        \midrule
+        LLaMA (7B) & 521 & 10 \\
+        LLaMA (13B) & 386 & 31 \\
+        \midrule
+        Llama 3.1 (8B)  & 1790 & 12 \\
+        Llama 3.1 (70B) & 1051 & 8 \\
+        Llama 3.1 (405B) & 892 & 12 \\
+        Llama 3.3 (70B) & 1079 & 4 \\
+        \bottomrule
+    \end{tabular}
+
+    \caption{Vergleich der Ergebnisse von \citet{bhandariAreLargeLanguage2023} (oben) mit den Ergebnissen des \regexv{} (unten) ohne die Länderinformation (s. Abbildungen \ref{fig_res_coords_error} und \ref{fig_res_coords_p}). Dabei ist die \textit{P-Rate} der prozentuale Anteil der Antworten, die erfolgreich ausgewertet werden können.}
+
+    \label{comparison_original}
+\end{table}
+
+Eine Einschränkung dieser Arbeit liegt in der fehlenden Untersuchung dieser Veränderungen.
+Die Frage, warum bei neueren Modellen die \textit{P-Rate} und der Fehler schlechter sind, konnte nicht eindeutig beantwortet werden, da es aufgrund der fehlenden Verfügbarkeit nicht möglich war, direkt mit dem LLaMa Modell zu arbeiten.
+Eine mögliche Erklärung wäre, dass die neueren Modelle in einem anderen Format antworten, das von den regulären Ausdrücken nicht erkannt wird.
+
+% + json und llm gute Ergebnisse
+Allerdings zeigen die erzielten Ergebnisse, dass die \json{}- und \llmv{} vergleichbar gute und teilweise sogar bessere Ergebnisse produzieren, als \citet{bhandariAreLargeLanguage2023} es mit dem \regexv{} erreicht haben.
+Ein wesentlicher Vorteil dieser Methoden sind die verglichen mit dem \regexv{} nahezu perfekten \textit{P-Rate} Werte.
+
+% - llm aber nicht geprüft
+Ein möglicher Nachteil des \llmv{}s ist, dass nicht ausgeschlossen werden kann, dass bei der Extraktion der Koordinaten durch ein LLM (vgl. Kapitel \ref{ss:methods:coords:verfahren}) Informationen verändert und nicht nur extrahiert werden.
+Dies könnte in anschließenden Arbeiten untersucht werden, da die Fähigkeit, einzelne Informationen aus unstrukturierten Texten zu extrahieren, vielseitig eingesetzt werden könnte.
+
+% Distanz: Einschränkungen, Stärken & Schwächen -> Frage
+\subsection*{Distanz}
+Ein möglicher Nachteil dieses Experimentes ist, dass nur das \jsonv{} betrachtet wurde.
+Es wurde aufgrund der Ergebnisse des vorigen Experimentes ausgewählt.
+Allerdings besteht die Möglichkeit, dass z.\,B. das \llm{}- oder ein neues Verfahren deutlich bessere Ergebnisse liefern würde.
+In Zukunft könnten für diesen Anwendungsfall noch weitere Auswertungsverfahren getestet werden.
+
+
+
+% ---------------------------------------------------------------------------------
+% Zusammenfassung der Ergebnisse -> Beantwortung der Frage & Einsatzmöglichkeiten
+% ---------------------------------------------------------------------------------
+\section{Zusammenfassung und Fazit}
+% Koordinaten: Zusammenfassung & Beantwortung der Frage, Einsatzmöglichkeiten
+Das Experiment \textit{Koordinaten} (s. Kapitel \ref{methods_coords} und \ref{results_coords}) sollte beantworten, \textit{in welchem Umfang ausgewählte Llama 3 Modelle in der Lage sind, akkurate Koordinaten für Städte anzugeben}.
+
+Die Ergebnisse des Experimentes legen nahe, dass die Antwort stark vom Kontext abhängt.
+Während der durchschnittliche Fehler mit Länderinformation bei manchen Modellen mit ausgewählten Verfahren unter 100 km liegt und damit im globalen Kontext als akzeptabel betrachtet werden könnte, sind die Fehler ohne die Länderinformation signifikant größer und überschreiten immer 300 km.
+Zudem zeigt die hohe Standardabweichung, dass einzelne Antworten keine akkuraten Koordinaten für Städte zurückgeben - auch nach Optimierungen bleibt das Problem bestehen.
+
+Besonders das \regexv{} zeigt sich als praktisch unbrauchbar im Vergleich zu den anderen Verfahren, da nur ein sehr geringer Anteil der Antworten korrekt ausgewertet werden kann.
+Obwohl die verschiedenen Verfahren bei bestimmten Anfragen, vor allem mit der Länderinformation, vielversprechende Ergebnisse liefern, zeigen die hohen Standardabweichungen, dass diese Verfahren für den praktischen Einsatz noch ungeeignet sind, da bei allen potentiellen Einsatzgebieten nicht kleine durchschnittliche Fehler, sondern akkurate einzelne Werte benötigt werden.
+
+% Distanz: Zusammenfassung & Beantwortung der Frage, Einsatzmöglichkeiten
+Das Experiment \textit{Distanz} (s. Kapitel \ref{methods_dist} und \ref{results_dist}) sollte beantworten, \textit{in welchem Umfang ausgewählte Llama 3 Modelle in der Lage sind, Distanzen zwischen Städten zu bestimmen}.
+
+Die Ergebnisse des Experimentes zeigen, dass das hier verwendete \jsonv{} selbst mit der Länderinformation bei keinem der betrachteten Modelle einen durchschnittlichen Fehler von unter 600 km erreicht hat.
+Außerdem beträgt die minimale Standardabweichung über 600 km.
+Demnach ist es mit dieser Methode und diesen Modellen nicht möglich, kleine durchschnittliche Fehler zu erreichen oder akkurate Distanzen zwischen einzelnen Städten zu bestimmen.
+
+
+
+% ---------------------------------------------------------------------------------
+% Bedeutung der Ergebnisse (vgl. 3 Punkte in der Einleitung) & andere Arbeiten
+% ---------------------------------------------------------------------------------
+Die Ergebnisse dieser Arbeit legen nahe, dass größere und neuere Modelle ein besseres geographisches Wissen haben als kleinere und ältere Modelle.
+Abschließend bedeutet das für die drei in der Einleitung erwähnten Punkte Sicherheit, Fortschritt und Anwendungsmöglichkeiten, dass ein Fortschritt stattfindet, aber die Leistung noch nicht gut genug für praktische Anwendungsmöglichkeiten ist und man sich aufgrund der großen Standardabweichung nicht auf die Antworten verlassen darf.

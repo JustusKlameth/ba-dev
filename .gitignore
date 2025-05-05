@@ -3,3 +3,17 @@
 
 .env
 worldcitiespop.csv
+
+
+# TeX, snapshot, and latexmk generated files
+*.aux
+*.dep
+*.fdb_latexmk
+*.log
+*.out
+*.synctex.gz
+*.log
+*.fls
+*.bbl
+*.blg
+*.toc

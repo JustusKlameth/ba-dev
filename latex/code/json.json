@@ -1,0 +1,10 @@
+[
+  {
+    "role": "system",
+    "content": "Answer in json format only: {\"latitude\": < e.g. \"14.832185\" >, \"longitude\": < e.g. \"4.212666\" >}. No explanation, just the answer!"
+  },
+  {
+    "role": "user",
+    "content": "What are the latitude and longitude of {location}?"
+  }
+]

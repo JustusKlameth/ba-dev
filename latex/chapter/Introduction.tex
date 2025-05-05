@@ -1,0 +1,41 @@
+\chapter{Einleitung}
+\label{ch:intro}
+
+% Nutzung von KI-Diensten
+Seit den letzten Jahren spielen KI-Dienste eine wichtige Rolle in der Gesellschaft.
+Über 40 \% der Befragten in der Generation Z (18 bis 27 Jahre) in Deutschland geben in einer Studie an, aktiv KI-Dienste zu nutzen \citep{horizontUmfrageZurNutzung2023}.
+Dabei sind weltweit die größten Anwendungsgebiete Contenterstellung, Kreatives Brainstorming und Austesten der Fähigkeiten \citep{capgeminiGenerativeKIVerwendungszweck2023}.
+
+% Fähigkeiten von LLaMa (grob) und Überleitung geografisches Wissen
+Zu diesen KI-Diensten gehören auch Large Language Models (LLMs), die sich insbesondere durch ihre Leistungsfähigkeit im Bereich der natürlichen Sprachverarbeitung auszeichnen \citep{zhaoSurveyLargeLanguage2024}.
+% Generell mehr LLM's
+Auf Basis von \textit{Attention is All you Need} \citep{vaswaniAttentionAllYou2017} wurden in den zurückliegenden Jahren eine Vielzahl von LLMs wie z.\,B. GPT-4 \citep{openaiGPT4TechnicalReport2023}, die Llama 3 Modelle \citep{ai@metaLlama3Herd2024} und Claude 3.5\footnote{\url{https://www.anthropic.com/}} publiziert.
+Diese Modelle lernen aus rein sprachlichen Zusammenhängen und es ist fraglich, inwieweit sich die Erkentnisse generalisieren und übertragen lassen.
+% Llama 3
+Die Llama 3 Modelle weisen unter Anderem eine gute Leistung und vielversprechende Perspektiven für die Zukunft in den Bereichen Medizin \citep{liChatDoctorMedicalChat2023}, Code-Generierung \citep{roziereCodeLlamaOpen2024} und Mathematik \citep{azerbayevLlemmaOpenLanguage2024} auf.
+Allerdings ist der Kenntnisstand über den Umfang des geografischen Wissens der Llama 3 Modelle derzeit noch gering.
+
+% Warum das Verständnis davon wichtig ist
+Ein gutes Verständnis des geografischen Wissens und der Fähigkeiten der Llama 3 Modelle ist laut \citet{robertsGPT4GEOHowLanguage2023} relevant für:
+\begin{enumerate}
+    \item \textbf{Sicherheit}. Mit zunehmender Leistungsfähigkeit von KI-Modellen gehen auch potenzielle Gefahren und Sicherheitsrisiken einher \citep{amodeiConcreteProblemsAI2016}. Daher ist es von Relevanz, die Fähigkeiten von Llama 3 zu kennen, um einen sicheren Einsatz zu gewährleisten.
+    \item \textbf{Fortschritt}. Ein gutes Verständnis ist für die stetige Verbesserung zukünftiger Modelle von wesentlicher Bedeutung.
+    \item \textbf{Anwendungsmöglichkeiten}. Für die gezielte Nutzung von Llama 3 ist ein umfassendes Verständnis des geografischen Wissens und der Fähigkeiten erforderlich, wobei starke geografische Fähigkeiten den Einsatz z.\,B. in den Reise- und Navigationsbranchen ermöglichen würden.
+\end{enumerate}
+% evtl. Probleme bei der Beantwortung
+
+% \newpage % passt gerade einfach besser
+
+% Konkrete Fragestellung
+Um mehr über das geografische Wissen von den Llama 3 Modellen herauszufinden, stellt sich diese Arbeit die Frage:
+
+\begin{center}
+    \itshape
+    In welchem Umfang sind ausgewählte Llama 3 Modelle in der Lage, akkurate Koordinaten für Städte anzugeben und Distanzen zwischen Städten zu bestimmen?
+\end{center}
+
+% Zusammenfassung uns Leitfaden der gesamten Arbeit
+Zur Beantwortung der aufgeworfenen Frage erfolgt zunächst eine quantitative Analyse und Gegenüberstellung verschiedener Llama 3 Modelle unter Verwendung eines Datensatzes. Darüber hinaus werden in einer qualitativen Untersuchung die am häufigsten auftretenden Fehlerquellen erörtert.
+
+Dies erfolgt in mehreren Schritten. Zunächst werden in Kapitel \ref{ch:basics} einige Grundlagen erörtert. Darauf aufbauend werden in Kapitel \ref{ch:methods} die Methodik und die Experimente dieser Arbeit präsentiert. Die daraus resultierenden Ergebnisse werden in Kapitel \ref{ch:results} vorgestellt.
+Abschließend werden in Kapitel \ref{ch:discussion} die Ergebnisse diskutiert, ein Fazit gezogen und Perspektiven für zukünftige Arbeiten gegeben.
